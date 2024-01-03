@@ -1,0 +1,23 @@
+﻿@page "/"
+@model eStoreClient_HE163971.Pages.LoginModel
+@{
+}
+<form method="post">
+    <div class="row">
+        <div >
+            <label asp-for="email"></label>
+
+            <input asp-for="email" />
+           
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <label asp-for="pass"></label>
+
+            <input asp-for="pass" type="password" />
+
+        </div>
+    </div>
+    <input type="submit" value="Login" />
+</form>

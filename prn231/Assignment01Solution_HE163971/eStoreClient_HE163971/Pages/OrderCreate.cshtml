@@ -1,0 +1,56 @@
+﻿@page
+@using eStoreClient_HE163971.Models @*namespace*@
+@model eStoreClient_HE163971.Pages.OrderCreateModel
+@{
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add Order</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Order.MemberId"></label>
+                <input asp-for="Order.MemberId" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Order.MemberId"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Order.OrderDate"></label>
+                <input asp-for="Order.OrderDate" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Order.OrderDate"></span>
+            </div>
+        </div>
+                <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Order.RequiredDate"></label>
+                <input asp-for="Order.RequiredDate" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Order.RequiredDate"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Order.ShippedDate"></label>
+                <input asp-for="Order.ShippedDate" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Order.ShippedDate"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Order.Freight"></label>
+                <input asp-for="Order.Freight" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Order.Freight"></span>
+            </div>
+        </div>
+    
+      
+      
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="/allcustomer">Cancel</a>
+    </form>
+</div>

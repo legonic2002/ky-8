@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "s6aqQLxHA2BiFQhbS4fZ/uIABQbkYg+/eNDuL0FQ4EuTBLGK5pYdB6PVb84TTg8QQHvjYzb/cyMOLek1jrhytA==",
+  "success": true,
+  "projectFilePath": "D:\\Ky8\\prn231\\PREN231_PE_TRIAL\\Client\\Client.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Legon\\.nuget\\packages\\google.protobuf\\3.24.3\\google.protobuf.3.24.3.nupkg.sha512",
+    "C:\\Users\\Legon\\.nuget\\packages\\grpc.core.api\\2.57.0\\grpc.core.api.2.57.0.nupkg.sha512",
+    "C:\\Users\\Legon\\.nuget\\packages\\grpc.net.client\\2.57.0\\grpc.net.client.2.57.0.nupkg.sha512",
+    "C:\\Users\\Legon\\.nuget\\packages\\grpc.net.common\\2.57.0\\grpc.net.common.2.57.0.nupkg.sha512",
+    "C:\\Users\\Legon\\.nuget\\packages\\grpc.tools\\2.58.0\\grpc.tools.2.58.0.nupkg.sha512",
+    "C:\\Users\\Legon\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

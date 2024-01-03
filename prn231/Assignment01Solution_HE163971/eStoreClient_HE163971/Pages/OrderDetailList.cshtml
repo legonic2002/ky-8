@@ -1,0 +1,58 @@
+﻿@page
+
+@using eStoreClient_HE163971.Models
+@model OrderDetailListModel
+@{
+}
+
+<h1>Index</h1>
+<p>
+</p>
+<a href="/OrderDetailcreate">Create new</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("OrderId")
+            </th>
+            <th>
+                @Html.DisplayName("ProductId")
+            </th>
+            <th>
+                @Html.DisplayName("UnitPrice")
+            </th>
+            <th>
+                @Html.DisplayName("Quantity")
+            </th>
+            <th>
+                @Html.DisplayName("Discount")
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listProduct)
+        {
+            <tr>
+            </tr>
+        <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item. UnitPrice)
+        </td>
+        <td>
+
+                @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+
+                @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        
+        }
+    </tbody>
+</table>

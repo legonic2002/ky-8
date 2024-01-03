@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\eStoreClient_HE163971.props" />
+</Project>

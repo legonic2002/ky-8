@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Lab01_ASP.NETCoreWebAPI.Models.Product>
+@{
+}
+ViewData["Title"] = "Index";
+<h1>Index</h1>
+<p>
+</p>
+<a asp-action="Create">Create New</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+            </tr>
+        <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item. ProductName)
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+                <a class="page-scroll" href="/Views/Home/Update" >Update</a> | @Html.ActionLink("Delete", "Delete", new { /* id=item. PrimaryKey */ })
+        </td>
+        }
+    </tbody>
+</table>

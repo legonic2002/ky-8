@@ -1,0 +1,110 @@
+﻿
+@model eStoreClient.Models.Member
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<script src="~/js/javascrip.js"></script>
+<h4>Member</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MemberId" />
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetMember();
+        function GetMember() {
+            let params = (new URL(document.location)).searchParams;
+            let id = params.get("id");
+
+            $.ajax({
+                url: "https://localhost:7063/Member/Member/" + id,
+                type: "get",
+                contentType: "application/json",
+                success: function (result, status, xhr) {
+                    console.log(JSON.stringify("22222"));
+                    $("#Id").val(result["memberId"]);
+                    $("#Email").val(result["email"]);
+                    $("#CompanyName").val(result["companyName"]);
+                    $("#City").val(result["city"]);
+                    $("#Country").val(result["country"]);
+                    $("#Password").val(result["password"]);
+                }
+            });
+        }
+
+        $("#UpdateButton").click(function (e) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                window.location = "https://localhost:7000/Members";
+
+
+            }
+
+
+
+            let params = (new URL(document.location)).searchParams;
+            let id = params.get("id");
+            xhttp.open("PUT", "https://localhost:7063/Member/Member/" + id, true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            var obj = {
+                MemberId: document.getElementById("Id").value,
+                Email: document.getElementById("Email").value,
+                CompanyName: document.getElementById("CompanyName").value,
+                City: document.getElementById("City").value,
+                Country: document.getElementById("Country").value,
+                Password: document.getElementById("Password").value,
+
+
+            };
+
+            xhttp.send(JSON.stringify(obj));
+
+            window.location = "https://localhost:7000/Members";
+        });
+
+
+    });
+</script>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,58 @@
+﻿@page
+@using eStoreClient_HE163971.Models @*namespace*@
+
+@model eStoreClient_HE163971.Pages.OrderDetailCreateModel
+@{
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add OrderDetail</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="OrderDetail.ProductId"></label>
+                <input asp-for="OrderDetail.ProductId" class="form-control" />
+                <span class="alert-danger" asp-validation-for="OrderDetail.ProductId"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="OrderDetail.OrderId"></label>
+                
+                <input asp-for="OrdderId" class="form-control" />
+                <span class="alert-danger" asp-validation-for="OrderDetail.OrderId"></span>
+            </div>
+        </div>
+                <div class="row">
+            <div class="col-md-4">
+                <label asp-for="OrderDetail.UnitPrice"></label>
+                <input asp-for="OrderDetail.UnitPrice" class="form-control" />
+                <span class="alert-danger" asp-validation-for="OrderDetail.UnitPrice"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="OrderDetail.Quantity"></label>
+                <input asp-for="OrderDetail.Quantity" class="form-control" />
+                <span class="alert-danger" asp-validation-for="OrderDetail.Quantity"></span>
+            </div>
+                    <div class="row">
+            <div class="col-md-4">
+                <label asp-for="OrderDetail.Discount"></label>
+                    <input asp-for="OrderDetail.Discount" class="form-control" />
+                    <span class="alert-danger" asp-validation-for="OrderDetail.Discount"></span>
+            </div>
+
+        </div>
+        </div>
+       
+      
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="/OrderDetailList">Cancel</a>
+    </form>
+</div>

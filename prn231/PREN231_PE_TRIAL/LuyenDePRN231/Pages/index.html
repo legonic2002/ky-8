@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+<script src="lid/jquery/jquery.js"></script>
+<head>
+    <link href="lid/bootstrap-4.0.0-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="lid/bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p>
+
+        <label>Start Date</label>
+        <input name="StartDate" id="SDate" type="date" />
+        <label>End Date</label>
+        <input name="EndDate" id="EDate" type="date" />
+        <input type="submit" value="Search" id="Submit" />
+
+    </p>
+
+
+    <a asp-action="Create">Create New Order</a>
+    </p>
+
+    <table class="table table-bordered" id="Table">
+        <thead>
+            <tr>
+                <th>
+                    OrderId
+                </th>
+                <th>
+                    CustomerId
+                </th>
+                <th>
+                    CustomerName
+                </th>
+                <th>
+                    EmployeeId
+                </th>
+                <th>
+                    EmployeeName
+                </th>
+                <th>
+                    OrderDate
+                </th>
+                <th>
+                    RequiredDate
+                </th>
+                <th>
+                    ShippedDate
+                </th>
+                <th>
+                    Freight
+                </th>
+                <th>
+                    ShipName
+                </th>
+
+                <th>
+                    ShipAddress
+                </th>
+                <th>
+                    ShipCity
+                </th>
+                <th>
+                    ShipRegion
+                </th>
+                <th>
+                    ShipPostalCode
+                </th>
+                <th>
+                    ShipCountry
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+     
+
+    </tbody>
+    </table>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Manager.GetAllProduct();
+
+
+            $("table").on("click", "a.delete", function (e) {
+                
+                let resId = $('#item').attr('data-foo')
+                console.log(resId);
+                $.ajax({
+                    url: "https://localhost:7011/api/Employees/delete/" + resId,
+                    type: "delete",
+                    contentType: "application/json",
+                    success: function (result, status, xhr) {
+                        $(this).remove();
+                        Manager.GetAllProduct();
+                    }
+
+                });
+            });
+            $("#Submit").on("click", function () {
+                var Sdate = $("#SDate").val();
+
+                var EDate = $("#EDate").val();
+                var serviceUrl = "https://localhost:7011/api/Order/getallorder";
+                window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+                function onSuccess(jsonData) {
+
+                    obj = jsonData;
+                    var rows = "";
+                    $.each(jsonData, function (i, item) {
+                        if (Date.parse(Sdate) < Date.parse(item.orderDate) && Date.parse(item.orderDate) < Date.parse(EDate)) {
+                            console.log(Sdate);
+                            console.log(EDate);
+                            rows += "<tr>" +
+                            "<td >" + item.orderId + "</td>" +
+                            "<td >" + item.customerId + "</td>" +
+                            "<td >" + item.customerName + "</td>" +
+                            "<td> <a href='' id='item' class=\'delete\' data-foo='"+item.employeeId+"' > "+item.employeeId+"</a></td>" +
+                            "<td >" + item.employeeName + "</td>" +
+                            "<td >" + item.orderDate + "</td>" +
+                            "<td >" + item.requiredDate + "</td>" +
+                            "<td >" + item.shippedDate + "</td>" +
+                            "<td >" + item.freight + "</td>" +
+                            "<td >" + item.shipName + "</td>" +
+                            "<td >" + item.shipAddress + "</td>" +
+                            "<td >" + item.shipCity + "</td>" +
+                            "<td >" + item.shipRegion + "</td>" +
+                            "<td >" + item.shipPostalCode + "</td>" +
+                            "<td >" + item.shipCountry + "</td>" +
+                            "</tr>"
+                        }
+                    });
+                    $('#Table tbody').empty().append(rows);
+                }
+                function onFailed(error) {
+                    window.alert(error.statusText);
+                }
+            });
+
+        })
+
+        var Manager = {
+            GetAllProduct: function () {
+                var obj = "";
+                var serviceUrl = "https://localhost:7011/api/Order/getallorder";
+                window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+                function onSuccess(jsonData) {
+
+                    obj = jsonData;
+                    var rows = "";
+                    $.each(jsonData, function (i, item) {
+                        rows += "<tr>" +
+                            "<td >" + item.orderId + "</td>" +
+                            "<td >" + item.customerId + "</td>" +
+                            "<td >" + item.customerName + "</td>" +
+                            "<td> <a href='' id='item' class=\'delete\' data-foo='"+item.employeeId+"' > "+item.employeeId+"</a></td>" +
+                            "<td >" + item.employeeName + "</td>" +
+                            "<td >" + item.orderDate + "</td>" +
+                            "<td >" + item.requiredDate + "</td>" +
+                            "<td >" + item.shippedDate + "</td>" +
+                            "<td >" + item.freight + "</td>" +
+                            "<td >" + item.shipName + "</td>" +
+                            "<td >" + item.shipAddress + "</td>" +
+                            "<td >" + item.shipCity + "</td>" +
+                            "<td >" + item.shipRegion + "</td>" +
+                            "<td >" + item.shipPostalCode + "</td>" +
+                            "<td >" + item.shipCountry + "</td>" +
+                            "</tr>"
+
+                    });
+                    $('#Table tbody').empty().append(rows);
+                }
+                function onFailed(error) {
+                    window.alert(error.statusText);
+                }
+                return obj;
+            },
+            GetAPI: function (serviceUrl, successCallback, errorCallback) {
+                $.ajax({
+                    type: "GET",
+                    url: serviceUrl,
+                    dataType: "json",
+                    success: successCallback,
+                    error: errorCallback
+
+
+                });
+            }
+        }
+
+
+    </script>
+</body>
+</html>

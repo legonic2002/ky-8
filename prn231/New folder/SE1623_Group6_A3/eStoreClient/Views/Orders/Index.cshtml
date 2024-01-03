@@ -1,0 +1,264 @@
+﻿@model MainPageModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<style>
+    img{
+    width: 20%;
+    }
+    table > tr> td{
+        width: 100%;
+    }
+</style>
+<script src="~/js/javascrip.js"></script>
+@Html.ActionLink(
+       "Back to Menu",
+    "ToMain",
+    "Home"
+)</br>
+
+<p>
+
+<p>
+   
+        <label>Start Date</label>
+        <input name="StartDate" id="SDate" type="date" />
+        <label>End Date</label>
+        <input name="EndDate" id="EDate" type="date" />
+        <input type="submit" value="Search" id="Submit" />
+   
+</p>
+
+
+    <a asp-action="Create">Create New Order</a>
+</p>
+
+<table class="table" id="Table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("OrderId")
+            </th>
+            <th>
+                @Html.DisplayName("MemberId")
+            </th>
+            <th>
+                @Html.DisplayName("OrderDate")
+            </th>
+            <th>
+                @Html.DisplayName("RequiredDate")
+            </th>
+            <th>
+                @Html.DisplayName("ShippedDate")
+            </th>
+            <th>
+                @Html.DisplayName("Freight")
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+@*@foreach (var item in Model.Order) {
+            <tr class="view">
+                <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequiredDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Freight)
+            </td>
+            <td>
+                    <a asp-action="CreateDetaills" asp-route-id="@item.OrderId">Create OrderDetails</a> |
+                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit Order</a> |
+                    
+                    <a asp-action="Delete" asp-route-id="@item.OrderId">Delete Order</a>
+            </td>
+        </tr>*@
+          @*  <tr class="fold">
+                <td colspan="7">
+                    <div class="fold-content">
+
+                      <table class="small-friendly">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        ProductId
+                                    </th>
+                                    <th>
+                                        OrderId
+                                    </th>
+                                    <th>
+                                        UnitPrice
+                                    </th>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        Discount
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var od in Model.OrderDetail)
+                                {
+                                    if (od.OrderId == item.OrderId)
+                                    {
+                                        <tr>
+
+                                            <td data-th="Customer name">@Html.DisplayFor(modelItem => od.ProductId)</td>
+
+                                            <td data-th="Customer name">@Html.DisplayFor(modelItem => od.OrderId)</td>
+
+                                            <td data-th="Customer name">@Html.DisplayFor(modelItem => od.UnitPrice)</td>
+
+                                            <td data-th="Customer name">@Html.DisplayFor(modelItem => od.Quantity)</td>
+
+                                            <td>@Html.DisplayFor(modelItem => od.Discount)</td>
+                                            <td>
+                                            <td>
+                                                <a asp-action="EditDetails" asp-route-id="@od.OrderDetailId">Edit</a> |
+                                                <a asp-action="DeleteDetails" asp-route-id="@od.OrderDetailId">Delete</a>
+                                            </td>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+        }*@
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        Manager.GetAllProduct();
+
+
+        $("table").on("click", "img.delete", function (e) {
+            var resId = $(this).parent("tr").find("td:nth-child(0)").text();
+            resId = e.target.closest("tr").childNodes[0].innerHTML;
+            console.log(resId);
+            $.ajax({
+                url: "https://localhost:7063/Order/Order/" + resId,
+                type: "delete",
+                contentType: "application/json",
+                success: function (result, status, xhr) {
+                    $(this).remove();
+                    Manager.GetAllProduct();
+                }
+
+            });
+        });
+        $("#Submit").on("click", function () {
+            var Sdate = $("#SDate").val();
+
+            var EDate = $("#EDate").val();
+            var serviceUrl = "https://localhost:7063/Order/Order";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+
+                obj = jsonData;
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    
+                  
+                    if (Date.parse(Sdate) <= Date.parse(item.orderDate) && Date.parse(item.orderDate) <= Date.parse(EDate)) {
+                        
+                        rows += "<tr>" +
+                            "<td >" + item.orderId + "</td>" +
+                            "<td >" + item.memberId + "</td>" +
+                            "<td >" + item.orderDate + "</td>" +
+                            "<td >" + item.requiredDate + "</td>" +
+                            "<td >" + item.shippedDate + "</td>" +
+                            "<td >" + item.freight + "</td>" +
+                            "<td><a href=\"Orders/edit?id=" + item.orderId + "\">Update </a></td > " +
+                            "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                            "</tr>"
+                    }
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+        });
+
+    })
+
+    var Manager = {
+        GetAllProduct: function () {
+            var obj = "";
+            var serviceUrl = "https://localhost:7063/Order/Order";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+
+                obj = jsonData;
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    rows += "<tr>" +
+                        "<td >" + item.orderId + "</td>" +
+                        "<td >" + item.memberId + "</td>" +
+                        "<td >" + item.orderDate + "</td>" +
+                        "<td >" + item.requiredDate + "</td>" +
+                        "<td >" + item.shippedDate + "</td>" +
+                        "<td >" + item.freight + "</td>" +
+                        "<td><a href=\"Orders/edit?id=" + item.orderId + "\">Update </a></td > " +
+                        "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                        "</tr>"
+
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+            return obj;
+        },
+        GetAPI: function (serviceUrl, successCallback, errorCallback) {
+            $.ajax({
+                type: "GET",
+                url: serviceUrl,
+                dataType: "json",
+                success: successCallback,
+                error: errorCallback
+
+
+            });
+        }
+    }
+    function CreateClickEvent() {
+        var dimg = document.getElementsByClassName("delete");
+        for (let i = 0; i < dimg.length; i++) {
+            dimg[i].addEventListener("click", function (e) {
+                var xhttp = new XMLHttpRequest;
+                xhttp.onreadystatechange = function () {
+                    Manager.GetAllProduct();
+                }; w
+                var resId = $(this).parent("tr").find("td:nth-child(1)").text();
+                xhttp.open("DELETE", "https://localhost:7063/Order/Order/" + resId, true);
+                xhttp.send();
+            })
+        }
+
+    }
+
+</script>

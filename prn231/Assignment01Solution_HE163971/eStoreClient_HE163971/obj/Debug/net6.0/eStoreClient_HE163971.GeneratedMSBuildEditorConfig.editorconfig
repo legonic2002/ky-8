@@ -1,0 +1,105 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = eStoreClient_HE163971
+build_property.RootNamespace = eStoreClient_HE163971
+build_property.ProjectDir = D:\Ky8\prn231\Assignment01Solution_HE163971\eStoreClient_HE163971\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Ky8\prn231\Assignment01Solution_HE163971\eStoreClient_HE163971
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/MemberCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/MemberList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/MemberUpdate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/MemberView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/MemberViewOrderList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyVmlld09yZGVyTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/OrderCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/OrderDetailCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/OrderDetailList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/OrderDetailUpdate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/OrderList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/OrderUpdate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/ProductCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/ProductList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/ProductUpdate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ky8/prn231/Assignment01Solution_HE163971/eStoreClient_HE163971/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-fbb5za5uul

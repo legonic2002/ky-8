@@ -1,0 +1,108 @@
+﻿
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<script src="~/js/javascrip.js"></script>
+<h4>OrderDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label for="OrderId">OrderDetailId:</label>
+            <input type="text" id="OrderDetailId" class="form-control" readonly id="OrderDetailId" />
+        </div>
+        <div class="form-group">
+            <label for="ProductId">ProductId:</label>
+            <select id="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+        </div>
+        <div class="form-group">
+            <label for="OrderId">OrderId:</label>
+            <input type="text" class="form-control" readonly id="OrderId" />
+        </div>
+        <div class="form-group">
+            <label for="UnitPrice">UnitPrice:</label>
+            <input type="text" class="form-control" id="UnitPrice" />
+        </div>
+        <div class="form-group">
+            <label for="Quantity">Quantity:</label>
+            <input type="text" class="form-control" id="Quantity" />
+        </div>
+        <div class="form-group">
+            <label for="Discount">Discount:</label>
+            <input type="text" class="form-control" id="Discount" />
+        </div>
+        
+        <div class="text-center panel-body">
+            <button type="submit" id="UpdateButton">Update</button>
+        </div>
+        
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetMember();
+        function GetMember() {
+            let params = (new URL(document.location)).searchParams;
+            let id = params.get("id");
+
+            $.ajax({
+                url: "https://localhost:7063/OrderDetail/OrderDetail/"+id,
+                type: "get",
+                contentType: "application/json",
+                success: function (result, status, xhr) {
+                    console.log(JSON.stringify("22222"));
+                    $("#OrderDetailId").val(result["orderDetailId"]);
+                    $("#ProductId").val(result["productId"]);
+                    $("#OrderId").val(result["orderId"]);
+                    $("#UnitPrice").val(result["unitPrice"]);
+                    $("#Quantity").val(result["quantity"]);
+                    $("#Discount").val(result["discount"]);
+                }
+            });
+        }
+
+        $("#UpdateButton").click(function (e) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                window.location = "https://localhost:7000/Members";
+
+
+            }
+
+
+
+            let params = (new URL(document.location)).searchParams;
+            let id = params.get("id");
+            xhttp.open("PUT", "https://localhost:7063/OrderDetail/OrderDetail", true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            var obj = {
+                OrderDetailId: document.getElementById("OrderDetailId").value,
+                ProductId: document.getElementById("ProductId").value,
+                OrderId: document.getElementById("OrderId").value,
+                UnitPrice: document.getElementById("UnitPrice").value,
+                Quantity: document.getElementById("Quantity").value,
+                Discount: document.getElementById("Discount").value,
+
+
+            };
+
+            xhttp.send(JSON.stringify(obj));
+
+            window.location = "/Orders/Edit?id=" + document.getElementById("OrderId").value;
+        });
+
+
+    });
+</script>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

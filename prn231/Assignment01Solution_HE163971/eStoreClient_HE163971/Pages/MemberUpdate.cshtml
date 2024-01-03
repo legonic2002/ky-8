@@ -1,0 +1,62 @@
+﻿@page
+@using eStoreClient_HE163971.Models @*namespace*@
+@model eStoreClient_HE163971.Pages.MemberUpdateModel
+@{
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add Product</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.MemberId"></label>
+                <input asp-for="Product.MemberId" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.MemberId"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.Email"></label>
+                <input asp-for="Product.Email" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.Email"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.CompanyName"></label>
+                <input asp-for="Product.CompanyName" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.CompanyName"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.City"></label>
+                <input asp-for="Product.City" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.City"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.Country"></label>
+                <input asp-for="Product.Country" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.Country"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.Password"></label>
+                <input asp-for="Product.Password" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.Password"></span>
+            </div>
+        </div>
+
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="/MemberList">Cancel</a>
+    </form>
+</div>

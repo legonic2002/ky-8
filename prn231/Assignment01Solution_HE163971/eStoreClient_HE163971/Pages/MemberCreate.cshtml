@@ -1,0 +1,55 @@
+﻿@page
+@using eStoreClient_HE163971.Models @*namespace*@
+@model eStoreClient_HE163971.Pages.MemberCreateModel
+@{
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add Member</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Member.Email"></label>
+                <input asp-for="Member.Email" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Member.Email"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Member.CompanyName"></label>
+                <input asp-for="Member.CompanyName" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Member.CompanyName"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Member.City"></label>
+                <input asp-for="Member.City" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Member.City"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Member.Country"></label>
+                <input asp-for="Member.Country" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Member.Country"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Member.Password"></label>
+                <input asp-for="Member.Password" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Member.Password"></span>
+            </div>
+        </div>
+        
+      
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="/MemberList">Cancel</a>
+    </form>
+</div>

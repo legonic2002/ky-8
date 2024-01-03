@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoLab3", "DemoLab3\DemoLab3.csproj", "{89EF6395-3B75-44B5-B4E3-823EA3BD318E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWeblab3", "DemoWeblab3\DemoWeblab3.csproj", "{E8AAC1A3-E1E8-4A9B-BE46-19CEB6921B2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89EF6395-3B75-44B5-B4E3-823EA3BD318E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89EF6395-3B75-44B5-B4E3-823EA3BD318E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89EF6395-3B75-44B5-B4E3-823EA3BD318E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89EF6395-3B75-44B5-B4E3-823EA3BD318E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8AAC1A3-E1E8-4A9B-BE46-19CEB6921B2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8AAC1A3-E1E8-4A9B-BE46-19CEB6921B2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8AAC1A3-E1E8-4A9B-BE46-19CEB6921B2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8AAC1A3-E1E8-4A9B-BE46-19CEB6921B2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5473AFF-649D-452B-A759-B90B57540BC0}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,17 @@
+﻿@page "/MemberView/{visitorId}"
+@model MemberViewModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    
+    <a asp-page="./MemberUpdate"
+       asp-page-handler="Delete" asp-route-id="@Model.Visitor">View Your Profile</a>
+   
+    <form method="post">
+        <input asp-for="Visitor" type="hidden"/>
+        <input type="submit" value="View Your order history" />
+    </form>
+  
+</div>

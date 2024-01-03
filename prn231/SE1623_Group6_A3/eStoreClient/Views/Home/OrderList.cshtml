@@ -1,0 +1,152 @@
+﻿@model MainPageModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<style>
+    img {
+        width: 20%;
+    }
+
+    table > tr > td {
+        width: 100%;
+    }
+</style>
+<script src="~/js/javascrip.js"></script>
+
+
+<p>
+
+<p>
+
+    <label>Start Date</label>
+    <input name="StartDate" id="SDate" type="date" />
+    <label>End Date</label>
+    <input name="EndDate" id="EDate" type="date" />
+    <input type="submit" value="Search" id="Submit" />
+
+<table class="table" id="Table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("OrderId")
+            </th>
+            <th>
+                @Html.DisplayName("MemberId")
+            </th>
+            <th>
+                @Html.DisplayName("OrderDate")
+            </th>
+            <th>
+                @Html.DisplayName("RequiredDate")
+            </th>
+            <th>
+                @Html.DisplayName("ShippedDate")
+            </th>
+            <th>
+                @Html.DisplayName("Freight")
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+   
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        Manager.GetAllProduct();
+
+            let params = (new URL(document.location)).searchParams;
+            let id = params.get("id");
+
+        $("#Submit").on("click", function () {
+           
+            var Sdate = $("#SDate").val();
+            var EDate = $("#EDate").val();
+            var serviceUrl = "https://localhost:7063/Order/Order";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+
+                obj = jsonData;
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+
+
+                    if (Date.parse(Sdate) <= Date.parse(item.orderDate) && Date.parse(item.orderDate) <= Date.parse(EDate)) {
+                        if (item.memberId == id) {
+                        rows += "<tr>" +
+                            "<td >" + item.orderId + "</td>" +
+                            "<td >" + item.memberId + "</td>" +
+                            "<td >" + item.orderDate + "</td>" +
+                            "<td >" + item.requiredDate + "</td>" +
+                            "<td >" + item.shippedDate + "</td>" +
+                            "<td >" + item.freight + "</td>" +
+                            "<td><a href=\"/Home/edit?id=" + item.orderId + "\">Update </a></td > " +
+                            "</tr>"
+                    }
+                    }
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+        });
+
+    })
+
+    var Manager = {
+         
+        GetAllProduct: function () {
+                params = (new URL(document.location)).searchParams;
+                id = params.get("id");
+            var obj = "";
+            var serviceUrl = "https://localhost:7063/Order/Order";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+
+                obj = jsonData;
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    if (item.memberId== id){
+                    rows += "<tr>" +
+                        "<td >" + item.orderId + "</td>" +
+                        "<td >" + item.memberId + "</td>" +
+                        "<td >" + item.orderDate + "</td>" +
+                        "<td >" + item.requiredDate + "</td>" +
+                        "<td >" + item.shippedDate + "</td>" +
+                        "<td >" + item.freight + "</td>" +
+                        "<td><a href=\"/Home/edit?id=" + item.orderId + "\">Update </a></td > " +
+
+                        "</tr>"
+                    
+                    }
+
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+            return obj;
+        },
+        GetAPI: function (serviceUrl, successCallback, errorCallback) {
+            $.ajax({
+                type: "GET",
+                url: serviceUrl,
+                dataType: "json",
+                success: successCallback,
+                error: errorCallback
+
+
+            });
+        }
+    }
+
+
+</script>

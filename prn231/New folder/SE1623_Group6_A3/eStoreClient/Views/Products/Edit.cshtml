@@ -1,0 +1,115 @@
+﻿@model eStoreClient.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Update </title>
+   
+    <script src="~/js/javascrip.js"></script>
+</head>
+<body>
+    <div>
+        <h2>Update  </h2>
+
+        <div class="form-group">
+            <label for="ProductId">ProductId:</label>
+            <input type="text" class="form-control" id="ProductId" readonly />
+        </div>
+        <div class="form-group">
+            <label for="CategoryId">CategoryId:</label>
+            <input type="text" class="form-control" id="CategoryId" />
+        </div>
+        <div class="form-group">
+            <label for="ProductName">Product Name:</label>
+            <input type="text" class="form-control" id="ProductName" />
+        </div>
+        <div class="form-group">
+            <label for="Weight">Weight:</label>
+            <input type="text" class="form-control" id="Weight" />
+        </div>
+        <div class="form-group">
+            <label for="UnitPrice">UnitPrice:</label>
+            <input type="text" class="form-control" id="UnitPrice" />
+        </div>
+        <div class="form-group">
+            <label for="UnitInStock">UnitInStock:</label>
+            <input type="text" class="form-control" id="UnitInStock" />
+        </div>
+        <div class="text-center panel-body">
+            <button type="submit" id="UpdateButton">Update</button>
+        </div>
+
+        <div style="display:none" id="resultDiv">
+            <h2>Reservation</h2>
+            <table class="table table-sm table-striped table-bordered m-2">
+                <thead>
+                    <tr>
+                        <th>ProductId</th>
+                        <th>CategoryId</th>
+                        <th>ProductName</th>
+                        <th>Weight</th>
+                        <th>UnitPrice</th>
+                        <th>UnitInStock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetMember();
+            function GetMember() {
+                let params = (new URL(document.location)).searchParams;
+                let id = params.get("id");
+
+                $.ajax({
+                    url: "https://localhost:7063/Product/Product/" + id,
+                    type: "get",
+                    contentType: "application/json",
+                    success: function (result, status, xhr) {
+                        console.log(JSON.stringify("22222"));
+                        $("#ProductId").val(result["productId"]);
+                        $("#CategoryId").val(result["categoryId"]);
+                        $("#ProductName").val(result["productName"]);
+                        $("#Weight").val(result["weight"]);
+                        $("#UnitPrice").val(result["unitPrice"]);
+                        $("#UnitInStock").val(result["unitInStock"]);
+                    }
+                });
+            }
+
+            $("#UpdateButton").click(function (e) {
+                var xhttp = new XMLHttpRequest();
+
+                let params = (new URL(document.location)).searchParams;
+                let id = params.get("id");
+                xhttp.open("PUT", "https://localhost:7063/product/Product", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                var obj = {
+                    ProductId: document.getElementById("ProductId").value,
+                    CategoryId: document.getElementById("CategoryId").value,
+                    ProductName: document.getElementById("ProductName").value,
+                    Weight: document.getElementById("Weight").value,
+                    UnitPrice: document.getElementById("UnitPrice").value,
+                    UnitInStock: document.getElementById("UnitInStock").value,
+
+
+                };
+
+                xhttp.send(JSON.stringify(obj));
+
+                window.location = "https://localhost:7000/Products";
+            });
+
+
+        });
+    </script>
+</body>
+</html>

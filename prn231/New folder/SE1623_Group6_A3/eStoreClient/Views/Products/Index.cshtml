@@ -1,0 +1,307 @@
+﻿@model IEnumerable<eStoreClient.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<style>
+    img {
+        width: 20%;
+    }
+
+    table > tr > td {
+        width: 100%;
+    }
+</style>
+<script src="~/js/javascrip.js"></script>
+@Html.ActionLink(
+       "Back to Menu",
+    "ToMain",
+    "Home"
+)</br>
+
+
+<input type="text" id="Search" name="search" />
+<input type="submit" id="Submit" value="Search" />
+
+</br>
+<input type="submit" id="Sort" value="Sort" />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" id="Table">
+    <thead>
+        <tr>
+            <th>
+                ProductId
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitInStock)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<button class="deincrease" name="buttonName" value="buttonValue">
+    Previous
+</button>
+<input type="submit" class="my_button" name="buttonName" value="1"/>
+
+<button class="increase" name="buttonName" value="buttonValue">
+    Next
+</button>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Manager.GetAllProduct();
+
+        $('.my_button').click(function () {
+            alert($(this).attr("value"));
+        });
+        $('.increase').click(function () {
+            var temp =$('.my_button').attr("value");
+            temp++;
+            $('.my_button').innerHTML=temp;
+            $('.my_button').attr('value', temp);
+            var obj = "";
+            var serviceUrl = "https://localhost:7063/Product/Product";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+                var size = 2;
+                var countlist = 0;
+                obj = jsonData;
+
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    if(countlist< (size*(temp-1))){
+                        countlist++;
+                    }else{
+                        if (countlist < (size*temp)) {
+                            rows += "<tr>" +
+                                "<td >" + item.productId + "</td>" +
+                                "<td >" + item.categoryId + "</td>" +
+                                "<td >" + item.productName + "</td>" +
+                                "<td >" + item.weight + "</td>" +
+                                "<td >" + item.unitPrice + "</td>" +
+                                "<td >" + item.unitInStock + "</td>" +
+                                "<td><a href=\"Products/edit?id=" + item.productId + "\">Update </a></td > " +
+                                "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                                "</tr>";
+                            countlist++;
+                        }
+                    }
+                   
+
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+        });
+        $('.deincrease').click(function () {
+            var temp = $('.my_button').attr("value");
+            if(temp>1){
+            temp--;
+            $('.my_button').innerHTML = temp;
+            $('.my_button').attr('value', temp);
+            }
+            var obj = "";
+            var serviceUrl = "https://localhost:7063/Product/Product";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+                var size = 2;
+                var countlist = 0;
+                obj = jsonData;
+
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    if (countlist < (size * (temp - 1))) {
+                        countlist++;
+                    } else {
+                        if (countlist < (size * temp)) {
+                            rows += "<tr>" +
+                                "<td >" + item.productId + "</td>" +
+                                "<td >" + item.categoryId + "</td>" +
+                                "<td >" + item.productName + "</td>" +
+                                "<td >" + item.weight + "</td>" +
+                                "<td >" + item.unitPrice + "</td>" +
+                                "<td >" + item.unitInStock + "</td>" +
+                                "<td><a href=\"Products/edit?id=" + item.productId + "\">Update </a></td > " +
+                                "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                                "</tr>";
+                            countlist++;
+                        }
+                    }
+
+
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+        });
+
+        $("#Submit").on("click", function () {
+            var Search = $("#Search").val();
+
+           
+            var serviceUrl = "https://localhost:7063/Product/Product";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+
+                obj = jsonData;
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+
+
+                    if (String(item.productName).indexOf(Search) != -1) {
+
+                        rows += "<tr>" +
+                            "<td >" + item.productId + "</td>" +
+                            "<td >" + item.categoryId + "</td>" +
+                            "<td >" + item.productName + "</td>" +
+                            "<td >" + item.weight + "</td>" +
+                            "<td >" + item.unitPrice + "</td>" +
+                            "<td >" + item.unitInStock + "</td>" +
+                            "<td><a href=\"Products/edit?id=" + item.productId + "\">Update </a></td > " +
+                            "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                            "</tr>"
+                    }
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+        });
+        var Count= 0;
+
+        $("#Sort").on("click", function () {
+            var obj = "";
+            var serviceUrl = "https://localhost:7063/Product/Product";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+
+                obj = jsonData;
+                var array = jsonData;
+                if (Count % 2 == 0) {
+                    array.sort(function (a, b) {
+                        var a1 = a.unitPrice, b1 = b.unitPrice;
+                        if (a1 == b1) return 0;
+                        return a1 > b1 ? 1 : -1;
+                    });
+                    Count++;
+                }else{
+                    array.sort(function (a, b) {
+                        var a1 = a.unitPrice, b1 = b.unitPrice;
+                        if (a1 == b1) return 0;
+                        return a1 < b1 ? 1 : -1;
+                    });
+                    Count++;
+                }
+                
+
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    rows += "<tr>" +
+                        "<td >" + item.productId + "</td>" +
+                        "<td >" + item.categoryId + "</td>" +
+                        "<td >" + item.productName + "</td>" +
+                        "<td >" + item.weight + "</td>" +
+                        "<td >" + item.unitPrice + "</td>" +
+                        "<td >" + item.unitInStock + "</td>" +
+                        "<td><a href=\"Products/edit?id=" + item.productId + "\">Update </a></td > " +
+                        "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                        "</tr>"
+
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+        });
+
+        $("table").on("click", "img.delete", function (e) {
+            var resId = $(this).parent("tr").find("td:nth-child(0)").text();
+            resId = e.target.closest("tr").childNodes[0].innerHTML;
+            console.log(resId);
+            $.ajax({
+                url: "https://localhost:7063/Product/Product/" + resId,
+                type: "delete",
+                contentType: "application/json",
+                success: function (result, status, xhr) {
+                    $(this).remove();
+                    Manager.GetAllProduct();
+                }
+
+            });
+        });
+    })
+
+    var Manager = {
+        GetAllProduct: function () {
+            var obj = "";
+            var serviceUrl = "https://localhost:7063/Product/Product";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+                var size = 2;
+                var countlist = 0;
+                obj = jsonData;
+
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    if(countlist<size){
+                    rows += "<tr>" +
+                        "<td >" + item.productId + "</td>" +
+                        "<td >" + item.categoryId + "</td>" +
+                        "<td >" + item.productName + "</td>" +
+                        "<td >" + item.weight + "</td>" +
+                        "<td >" + item.unitPrice + "</td>" +
+                        "<td >" + item.unitInStock + "</td>" +
+                        "<td><a href=\"Products/edit?id=" + item.productId + "\">Update </a></td > " +
+                        "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                        "</tr>";
+                        countlist++;}
+
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+            return obj;
+        },
+        GetAPI: function (serviceUrl, successCallback, errorCallback) {
+            $.ajax({
+                type: "GET",
+                url: serviceUrl,
+                dataType: "json",
+                success: successCallback,
+                error: errorCallback
+
+
+            });
+        }
+    }
+ 
+
+</script>

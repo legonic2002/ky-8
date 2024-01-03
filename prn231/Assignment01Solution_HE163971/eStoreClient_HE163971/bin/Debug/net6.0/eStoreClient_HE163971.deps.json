@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "eStoreClient_HE163971/1.0.0": {
+        "runtime": {
+          "eStoreClient_HE163971.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "eStoreClient_HE163971/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

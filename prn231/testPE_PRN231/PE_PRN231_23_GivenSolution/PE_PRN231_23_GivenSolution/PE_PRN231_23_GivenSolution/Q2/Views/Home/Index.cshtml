@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@using GivenAPIs.Models
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .left {
+            float: left;
+            width: 10%;
+        }
+
+        .right {
+            float: right;
+            width: 90%;
+            padding-left: 10px;
+            border-left: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            @foreach (Studio tem in ViewBag.listProduct)
+            {
+                <a href="/Home/Index?id=@tem.StudioId">@tem.StudioName</a>
+               
+            }
+            
+        </div>
+        <div class="right">
+            <form action="">
+                MovieId <input type="text"><br>
+                Title <input type="text"><br>
+                Studio
+                <select>
+                    @foreach (Studio tem in ViewBag.listProduct)
+                    {
+                        <option value="@tem.StudioId">@tem.StudioName</option>
+                    }
+                    
+
+                </select><br>
+                <br>
+                <input type="submit" value="Add">
+            </form>
+
+
+            <h2>List Movies</h2>
+            <table>
+                <tr>
+                    <th>MovieId</th>
+                    <th>Title</th>
+                </tr>
+               
+                    @foreach (Movie tem in ViewBag.movies)
+                    {
+                        <tr>
+                            <td>@tem.MovieId</td>
+                            <td>@tem.Title</td>
+                        </tr>
+                        
+                      
+                    }
+               
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

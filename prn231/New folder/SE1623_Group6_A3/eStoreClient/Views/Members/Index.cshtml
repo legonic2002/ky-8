@@ -1,0 +1,149 @@
+﻿@model IEnumerable<eStoreClient.Models.Member>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="~/js/javascrip.js"></script>
+<style>
+    img {
+        width: 30%;
+    }
+
+</style>
+<h1>Index</h1>
+@Html.ActionLink(
+       "Back to Menu",
+    "ToMain",
+    "Home"
+)</br>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" id="Table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+
+                <td><a href="Members/edit?id =@Html.DisplayFor(modelItem => item.MemberId) ">Update </a></td>
+
+                <td>  <img class="delete" src="/icon/81e31793e4266d231831a9c2548e7e33.jpg" />  </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Manager.GetAllProduct();
+
+
+        $("table").on("click", "img.delete", function (e) {
+            var resId = $(this).parent("tr").find("td:nth-child(0)").text();
+            resId = e.target.closest("tr").childNodes[0].innerHTML;
+            console.log(resId);
+            $.ajax({
+                url: "https://localhost:7063/Member/Member/" + resId,
+                type: "delete",
+                contentType: "application/json",
+                success: function (result, status, xhr) {
+                    $(this).remove();
+                    Manager.GetAllProduct();
+                }
+
+            });
+        });
+    })
+
+    var Manager = {
+        GetAllProduct: function () {
+            var obj = "";
+            var serviceUrl = "https://localhost:7063/Member/Member";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+
+                obj = jsonData;
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    rows += "<tr>" +
+                        "<td >" + item.memberId + "</td>" +
+                        "<td >" + item.email + "</td>" +
+                        "<td >" + item.companyName + "</td>" +
+                        "<td >" + item.city + "</td>" +
+                        "<td >" + item.country + "</td>" +
+                        "<td >" + item.password + "</td>" +
+                        "<td><a href=\"Members/edit?id=" + item.memberId + "\">Update </a></td > " +
+                        "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                        "</tr>"
+
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+            return obj;
+        },
+        GetAPI: function (serviceUrl, successCallback, errorCallback) {
+            $.ajax({
+                type: "GET",
+                url: serviceUrl,
+                dataType: "json",
+                success: successCallback,
+                error: errorCallback
+
+
+            });
+        }
+    }
+    function CreateClickEvent() {
+        var dimg = document.getElementsByClassName("delete");
+        for (let i = 0; i < dimg.length; i++) {
+            dimg[i].addEventListener("click", function (e) {
+                var xhttp = new XMLHttpRequest;
+                xhttp.onreadystatechange = function () {
+                    Manager.GetAllProduct();
+                }; w
+                var resId = $(this).parent("tr").find("td:nth-child(1)").text();
+                xhttp.open("DELETE", "https://localhost:7063/Member/Member/" + resId, true);
+                xhttp.send();
+            })
+        }
+
+    }
+
+</script>

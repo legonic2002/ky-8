@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment01Solution_AnhpmHE161347", "Assignment01Solution_HE163971\Assignment01Solution_AnhpmHE161347.csproj", "{1ED49394-D0E7-4D70-B222-B36CDC9FA6C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eStoreClient", "eStoreClient\eStoreClient.csproj", "{3AB9784C-E06C-48BB-B433-3F6CEEB8F7D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1ED49394-D0E7-4D70-B222-B36CDC9FA6C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED49394-D0E7-4D70-B222-B36CDC9FA6C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED49394-D0E7-4D70-B222-B36CDC9FA6C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED49394-D0E7-4D70-B222-B36CDC9FA6C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB9784C-E06C-48BB-B433-3F6CEEB8F7D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB9784C-E06C-48BB-B433-3F6CEEB8F7D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB9784C-E06C-48BB-B433-3F6CEEB8F7D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB9784C-E06C-48BB-B433-3F6CEEB8F7D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DB7D12F-51FF-4436-A225-97EF8E5769ED}
+	EndGlobalSection
+EndGlobal

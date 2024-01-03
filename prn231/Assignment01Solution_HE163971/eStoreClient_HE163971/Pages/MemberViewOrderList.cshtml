@@ -1,0 +1,72 @@
+﻿@page "/MemberViewOrderList/{visitorId}"
+
+@using eStoreClient_HE163971.Models
+@model MemberViewOrderListModel
+@{
+}
+
+<h1>Index</h1>
+<p>
+    <form method="get">
+        <label >Start Date</label>
+        <input name="StartDate" type="date" />
+        <label>End Date</label>
+        <input name="EndDate" type="date" />
+        <input type="submit" value="Search" />
+    </form>
+</p>
+<a href="/Ordercreate">Create new</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("OrderId")
+            </th>
+            <th>
+                @Html.DisplayName("MemberId")
+            </th>
+            <th>
+                @Html.DisplayName("OrderDate")
+            </th>
+            <th>
+                @Html.DisplayName("RequiredDate")
+            </th>
+            <th>
+                @Html.DisplayName("ShippedDate")
+            </th>
+            <th>
+                @Html.DisplayName("Freight")
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listProduct)
+        {
+            <tr>
+            </tr>
+        <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item.MemberId)
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item. OrderDate)
+        </td>
+        <td>
+
+                @Html.DisplayFor(modelItem => item.RequiredDate)
+        </td>
+        <td>
+
+                @Html.DisplayFor(modelItem => item.ShippedDate)
+        </td>
+        <td>
+                
+                @Html.DisplayFor(modelItem => item.Freight)
+        </td>
+      
+        }
+    </tbody>
+</table>

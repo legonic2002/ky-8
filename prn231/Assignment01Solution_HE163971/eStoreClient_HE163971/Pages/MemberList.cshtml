@@ -1,0 +1,71 @@
+﻿@page
+
+@using eStoreClient_HE163971.Models
+@model MemberListModel
+@{
+}
+
+<h1>Index</h1>
+<p>
+</p>
+<a href="/Membercreate">Create new</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("MemberId")
+            </th>
+            <th>
+                @Html.DisplayName("Email")
+            </th>
+            <th>
+                @Html.DisplayName("CompanyName")
+            </th>
+            <th>
+                @Html.DisplayName("City")
+            </th>
+            <th>
+                @Html.DisplayName("Country")
+            </th>
+            <th>
+                @Html.DisplayName("Password")
+            </th>
+            <th> Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listProduct)
+        {
+            <tr>
+            </tr>
+        <td>
+                @Html.DisplayFor(modelItem => item.MemberId)
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item. CompanyName)
+        </td>
+        <td>
+
+                @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+
+                @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+                
+                @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            <a asp-page="./MemberUpdate"
+               asp-page-handler="Delete" asp-route-id="@item.MemberId">Update</a>|
+            <a asp-page="./Memberlist"
+               onclick="return confirm('Are you sure you want to delete this item?');"
+               asp-page-handler="Delete" asp-route-id="@item.MemberId">Delete</a>
+        </td>
+        }
+    </tbody>
+</table>

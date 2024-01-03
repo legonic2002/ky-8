@@ -1,0 +1,62 @@
+﻿@page
+@using eStoreClient_HE163971.Models @*namespace*@
+@model eStoreClient_HE163971.Pages.OrderUpdateModel
+@{
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add Product</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.OrderId"></label>
+                <input asp-for="Product.OrderId" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.OrderId"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.MemberId"></label>
+                <input asp-for="Product.MemberId" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.MemberId"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.OrderDate"></label>
+                <input asp-for="Product.OrderDate" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.OrderDate"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.RequiredDate"></label>
+                <input asp-for="Product.RequiredDate" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.RequiredDate"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.ShippedDate"></label>
+                <input asp-for="Product.ShippedDate" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.ShippedDate"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Product.Freight"></label>
+                <input asp-for="Product.Freight" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Product.Freight"></span>
+            </div>
+        </div>
+
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="/OrderList">Cancel</a>
+    </form>
+</div>

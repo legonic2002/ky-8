@@ -1,0 +1,134 @@
+﻿@model IEnumerable<eStoreClient.Models.OrderDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    img {
+        width: 20%;
+    }
+
+    table > tr > td {
+        width: 100%;
+    }
+</style>
+<script src="~/js/javascrip.js"></script>
+@Html.ActionLink(
+       "Back to Menu",
+    "ToMain",
+    "Home"
+)</br>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Manager.GetAllProduct();
+
+
+        $("table").on("click", "img.delete", function (e) {
+            var resId = $(this).parent("tr").find("td:nth-child(0)").text();
+            resId = e.target.closest("tr").childNodes[0].innerHTML;
+            console.log(resId);
+            $.ajax({
+                url: "https://localhost:7063/OrderDetail/OrderDetail/" + resId,
+                type: "delete",
+                contentType: "application/json",
+                success: function (result, status, xhr) {
+                    $(this).remove();
+                    Manager.GetAllProduct();
+                }
+
+            });
+        });
+
+
+    })
+
+    var Manager = {
+        GetAllProduct: function () {
+            let params = (new URL(document.location)).searchParams;
+            let id = params.get("id");
+
+            var obj = "";
+            var serviceUrl = "https://localhost:7063/OrderDetail/OrderDetail";
+            window.Manager.GetAPI(serviceUrl, onSuccess, onFailed);
+            function onSuccess(jsonData) {
+
+                obj = jsonData;
+                var rows = "";
+                $.each(jsonData, function (i, item) {
+                    if (item.orderId == id){
+                    rows += "<tr>" +
+                        "<td >" + item.orderDetailId + "</td>" +
+                        "<td >" + item.productId + "</td>" +
+                        "<td >" + item.orderId + "</td>" +
+                        "<td >" + item.unitPrice + "</td>" +
+                        "<td >" + item.quantity + "</td>" +
+                        "<td >" + item.discount + "</td>" +
+                        "<td>  <img class=\"delete\"  src=\"/icon/81e31793e4266d231831a9c2548e7e33.jpg\" />  </td>" +
+                        "</tr>"
+                        }
+                });
+                $('#Table tbody').empty().append(rows);
+            }
+            function onFailed(error) {
+                window.alert(error.statusText);
+            }
+            return obj;
+        },
+        GetAPI: function (serviceUrl, successCallback, errorCallback) {
+            $.ajax({
+                type: "GET",
+                url: serviceUrl,
+                dataType: "json",
+                success: successCallback,
+                error: errorCallback
+
+
+            });
+        }
+    }
+    function CreateClickEvent() {
+        var dimg = document.getElementsByClassName("delete");
+        for (let i = 0; i < dimg.length; i++) {
+            dimg[i].addEventListener("click", function (e) {
+                var xhttp = new XMLHttpRequest;
+                xhttp.onreadystatechange = function () {
+                    Manager.GetAllProduct();
+                }; w
+                var resId = $(this).parent("tr").find("td:nth-child(1)").text();
+                xhttp.open("DELETE", "https://localhost:7063/OrderDetail/OrderDetail/" + resId, true);
+                xhttp.send();
+            })
+        }
+
+    }
+
+</script>
